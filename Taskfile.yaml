@@ -5,5 +5,7 @@ vars:
     sh: "git rev-parse --show-toplevel"
   CLUSTER_DIR: "{{.PROJECT_DIR}}/cluster"
   ANSIBLE_DIR: "{{.PROJECT_DIR}}/provisioners/ansible"
+  REMOTE_USER: 
+    sh: "whoami"
 includes:
   ansible: .taskfiles/ansible.yaml

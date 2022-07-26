@@ -22,6 +22,12 @@ tasks:
     cmds:
       - "ansible all --list-hosts"
 
+  prep-user:
+    desc: add ansible user with ssh key
+    dir: provisioners/ansible
+    cmds:
+      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/setup_ansible_user.yaml --ask-pass --ask-become-pass -u {{ .REMOTE_USER }}"
+
   ubuntu-prepare:
     desc: Prepare all the k8s nodes for running k3s
     dir: provisioners/ansible
