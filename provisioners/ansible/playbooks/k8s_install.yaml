@@ -16,10 +16,10 @@
 #  roles:
 #    - k8s_install/worker
 
-#- hosts:
-#    - 127.0.0.1
-#  become: false
-#  any_errors_fatal: true
-#  connection: local
-#  roles:
-#    - k8s_install/flux_prep
+- hosts:
+    - 127.0.0.1
+  become: false
+  any_errors_fatal: true
+  connection: local
+  roles:
+    - k8s_install/flux_prep
