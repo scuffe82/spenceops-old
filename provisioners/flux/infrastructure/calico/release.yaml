@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: calico
+  namespace: tigera-operator
+spec:
+  chart:
+    spec:
+      chart: tigera-operator
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: projectcalico
+        namespace: flux-system
+  valuesFrom:
+    - kind: ConfigMap
+      name: nginx-infra-values
+  interval: 5m0s
+  releaseName: calico-tigera-operator
