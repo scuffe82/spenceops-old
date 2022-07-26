@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nginx-infra
+  namespace: default
+spec:
+  chart:
+    spec:
+      chart: nginx
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: spenceops
+        namespace: flux-system
+  valuesFrom:
+    - kind: ConfigMap
+      name: nginx-infra-values
+  interval: 5m0s
+  releaseName: nginx-infra

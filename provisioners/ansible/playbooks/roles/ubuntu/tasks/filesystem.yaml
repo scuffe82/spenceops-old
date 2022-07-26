@@ -1,0 +1,40 @@
+---
+- name: Update max_user_watches
+  ansible.posix.sysctl:
+    name: fs.inotify.max_user_watches
+    value: "65536"
+    state: present
+    sysctl_file: /etc/sysctl.d/98-kubernetes-fs.conf
+
+- name: Disable swap at runtime
+  ansible.builtin.command: swapoff -a
+  when: ansible_swaptotal_mb > 0
+
+- name: Disable swap on boot
+  ansible.posix.mount:
+    name: "{{ item }}"
+    fstype: swap
+    state: absent
+  loop:
+    - swap
+    - none
+
+- name: update sysctl for k8s
+  sysctl:
+    name: vm.swappiness
+    value: 0
+    state: present
+    reload: yes
+  
+- name: drop cache
+  shell: 'echo 1 > /proc/sys/vm/drop_caches'
+
+
+- name: create dirs for stuff
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+  - /media/appdata
+  - /media/nfsProvisioner
+  - /media/{{ servername }}

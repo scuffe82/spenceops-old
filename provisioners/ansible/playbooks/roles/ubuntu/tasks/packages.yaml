@@ -1,0 +1,127 @@
+---
+- name: Install Aptitude
+  apt: name=aptitude update_cache=yes state=latest force_apt_get=yes
+
+- name: add k8s apt key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+
+- name: add k8s repo
+  apt_repository:
+    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+    filename: 'kubernetes'
+
+- name: "Add cri-o apt key"
+  apt_key:
+    url: "{{ item }}"
+    state: present
+  with_items:
+    - "https://downloadcontent.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/{{ crio_version }}/{{ crio_os }}/Release.key"
+    - "https://downloadcontent.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/{{ crio_os }}/Release.key"
+
+- name: "Add cri-o repositories"
+  apt_repository:
+    repo: "deb {{ item.url }} /"
+    filename: "{{ item.name }}"
+    state: present
+  with_items:
+    - name: devel:kubic:libcontainers:stable.list
+      url: "https://downloadcontent.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/{{ crio_os }}/"
+    - name: "devel:kubic:libcontainers:stable:cri-o:{{ crio_version }}.list"
+      url: "https://downloadcontent.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/{{ crio_version }}/{{ crio_os }}/"
+  
+- name: Upgrade all system packages
+  ansible.builtin.apt:
+    upgrade: safe
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+  register: apt_upgrade
+  retries: 5
+  until: apt_upgrade is success
+
+- name: Install common packages
+  ansible.builtin.apt:
+    name:
+      - apt-transport-https
+      - arptables
+      - ca-certificates
+      - curl
+      - iputils-ping
+      - lvm2
+      - net-tools
+      - nfs-common
+      - open-iscsi
+      - software-properties-common
+      - vim
+      - git
+      - zsh
+      - tmux
+      - fonts-powerline
+      - unzip
+      - unrar
+      - python3-pip
+      - jq
+      - kubelet
+      - kubeadm
+      - kubectl
+      - cri-o
+      - conntrack
+      - cri-o-runc
+      - cri-tools
+      - containernetworking-plugins
+    install_recommends: false
+    update_cache: true
+    cache_valid_time: 3600
+    autoclean: true
+    autoremove: true
+  register: apt_install_common
+  retries: 5
+  until: apt_install_common is success
+  notify:
+    - reboot
+  
+- name: Download helm installer
+  get_url:
+    url: https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+    dest: /tmp/get-helm-3
+    mode: '0777'
+
+- name: Run helm instller
+  command: bash /tmp/get-helm-3
+
+- name: Hold k8s packages
+  dpkg_selections:
+    name: "{{ item }}"
+    selection: hold
+  with_items:
+    - kubeadm
+    - kubelet
+    - kubectl
+    - cri-o
+    - cri-o-runc
+    - cri-tools
+
+- name: "Ensure cri-o service is started and enabled"
+  systemd:
+    name: crio
+    state: started
+    enabled: true
+
+- name: Copy crictl config to /etc
+  copy: 
+    src: crictl.yaml
+    dest: "/etc"
+    mode: 644
+
+- name: Download krew installer
+  get_url:
+    url: https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz
+    dest: /tmp/krew-linux_amd64.tar.gz
+    mode: '0777'
+
+- name: extract and install krew
+  shell: 'tar zxvf /tmp/krew-linux_amd64.tar.gz -C /tmp && /tmp/krew-linux_amd64 install krew'

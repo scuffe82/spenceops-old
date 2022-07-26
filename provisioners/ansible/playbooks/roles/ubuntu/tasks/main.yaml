@@ -1,0 +1,8 @@
+---
+- {import_tasks: packages.yaml}
+- {import_tasks: network.yaml}
+- {import_tasks: filesystem.yaml}
+- {import_tasks: setup_zsh.yaml}
+- {import_tasks: install_exa.yaml}
+- {import_tasks: setup_time.yaml}
+- {import_tasks: intel_compute_runtime.yaml}

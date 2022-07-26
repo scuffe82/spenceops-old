@@ -1,0 +1,48 @@
+- name: Get zsh path
+  command: which zsh
+  register: zsh_path
+  changed_when: no
+
+- name: Switch to zsh
+  become: yes
+  user:
+    name: "{{ user }}"
+    shell: "{{ zsh_path.stdout }}"
+
+- name: Clone oh-my-zsh repository
+  git:
+    repo: https://github.com/robbyrussell/oh-my-zsh.git
+    dest: "/home/{{ user }}/.oh-my-zsh"
+    accept_hostkey: yes
+    update: yes
+
+- name: Clone oh-my-zsh custom plugins
+  git:
+    repo: "{{ item.repo }}"
+    dest: "/home/{{ user }}/.oh-my-zsh/custom/plugins/{{ item.name }}"
+    accept_hostkey: yes
+    update: yes
+  with_items: "{{ zsh_ohmy_custom_plugins }}"
+
+- name: Clone oh-my-zsh custom themes
+  git:
+    repo: "{{ item.repo }}"
+    dest: "/home/{{ user }}/.oh-my-zsh/custom/themes/{{ item.name }}"
+    accept_hostkey: yes
+    update: yes
+  with_items: "{{ zsh_ohmy_custom_themes }}"
+
+- name: Create zsh config file
+  template:
+    src: zsh.config.j2
+    dest: "/home/{{ user }}/.zshrc"
+    mode: 0640
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: Copy powerlevel10k config file
+  copy: 
+    src: p10k.zsh
+    dest: "/home/{{ user }}/.p10k.zsh"
+    owner: "{{ user }}"
+    group: "{{ user }}"

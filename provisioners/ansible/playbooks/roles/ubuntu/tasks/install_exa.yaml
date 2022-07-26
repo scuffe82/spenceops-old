@@ -1,0 +1,5 @@
+- name: install exa 
+  copy: 
+    src: exa
+    dest: "/usr/local/bin"
+    mode: 755

@@ -1,0 +1,4 @@
+ansible-user*
+ansible.log
+facts_cache
+kubeconfig

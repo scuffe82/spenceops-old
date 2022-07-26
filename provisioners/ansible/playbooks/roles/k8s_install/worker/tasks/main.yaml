@@ -1,0 +1,15 @@
+- name: Check if kubelet.conf exists
+  stat:
+    path: "/etc/kubernetes/kubelet.conf"
+  register: kubelet_conf
+
+#- name: debug output
+#  debug:
+    #var: hostvars['{{ master }}'].kubernetes_join_command
+#    var: hostvars[groups['master'][0]]['kubernetes_join_command']
+
+- name: Join to cluster if needed
+  shell: >
+    {{ hostvars[groups['all'][0]]['kubernetes_join_command'] }}
+    creates=/etc/kubernetes/kubelet.conf
+  when: not kubelet_conf.stat.exists

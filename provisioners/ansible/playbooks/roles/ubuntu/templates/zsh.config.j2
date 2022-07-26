@@ -1,0 +1,30 @@
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+export ZSH="/home/scuffe/.oh-my-zsh"
+
+ZSH_THEME="{{ zsh_ohmy_theme }}"
+
+plugins=(
+{% for plugin in zsh_ohmy_plugins %}
+  {{ plugin }}
+{% endfor %}
+)
+
+source $ZSH/oh-my-zsh.sh
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f /usr/bin/kubectl ]] || source <(kubectl completion zsh)
+[[ ! -f /usr/local/bin/helm ]] || source <(helm completion zsh)
+
+alias k=kubectl
+compdef __start_kubectl k
+alias ls="exa --git -l"
+cd ~
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+unsetopt BEEP
+export CALICO_DATASTORE_TYPE=kubernetes
+export CALICO_KUBECONFIG=~/.kube/config

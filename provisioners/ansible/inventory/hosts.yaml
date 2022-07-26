@@ -1,0 +1,14 @@
+all:
+  hosts:
+    server1:
+    #server2:
+    #server3:
+
+masters:
+  hosts:
+    server1:
+
+#workers:
+#  hosts:
+#    server2:
+#    server3:

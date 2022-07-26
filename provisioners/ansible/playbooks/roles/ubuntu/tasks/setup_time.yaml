@@ -1,0 +1,14 @@
+- name: Stop timesyncd
+  systemd:
+    name: systemd-timesyncd
+    state: stopped
+
+- name: set timezone
+  shell: timedatectl set-timezone "{{ timezone }}"
+ 
+- name: copy timesyncd config file
+  template:
+    src: timesyncd.conf.j2
+    dest: /etc/systemd/timesyncd.conf
+  notify: 
+  - start timesyncd

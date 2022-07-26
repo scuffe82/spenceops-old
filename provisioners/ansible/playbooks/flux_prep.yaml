@@ -1,0 +1,14 @@
+---
+
+- hosts:
+    - master
+  gather_facts: true
+  become: true
+  become_user: ansible
+  any_errors_fatal: true
+  pre_tasks:
+    - name: Pausing for 5 seconds...
+      pause:
+        seconds: 5
+  roles:
+    - k8s_setup/flux_prep

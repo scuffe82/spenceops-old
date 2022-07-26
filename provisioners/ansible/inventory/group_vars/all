@@ -1,0 +1,46 @@
+#intel neo versions
+gmmlib_ver: 21.3.3
+igc_ver: 1.0.9441
+opencl_icd_ver: 21.49.21786
+level_zero_ver: 1.2.21786
+neo_ver: 21.49.21786
+
+#general stuff
+user: scuffe
+
+#location stuff
+timezone: America/Denver
+ntp1: 10.0.0.1
+ntp2: time.cloudflare.com
+
+crio_version: 1.24
+crio_os: xUbuntu_22.04
+
+domain_name: spenceops.com
+
+zsh_user:
+  - "{{ ansible_ssh_user|default(lookup('env', 'USER'))  }}"
+
+zsh_ohmy_theme: powerlevel10k/powerlevel10k
+
+zsh_ohmy_custom_plugins:
+  - name: zsh-syntax-highlighting
+    repo: "https://github.com/zsh-users/zsh-syntax-highlighting.git"
+  - name: zsh-autosuggestions
+    repo: "https://github.com/zsh-users/zsh-autosuggestions.git"
+  - name: autoenv
+    repo: "https://github.com/zpm-zsh/autoenv.git"
+
+zsh_ohmy_custom_themes:
+  - name: powerlevel10k
+    repo: "https://github.com/romkatv/powerlevel10k.git"
+
+zsh_ohmy_plugins:
+  - git
+  - zsh-syntax-highlighting
+  - zsh-autosuggestions
+  - autoenv
+
+k8s_api_ip: 10.0.0.210
+pod_network_cidr: 192.168.0.0/16
+cluster_name: spenceops

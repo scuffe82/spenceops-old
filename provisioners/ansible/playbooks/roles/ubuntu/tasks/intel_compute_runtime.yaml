@@ -1,0 +1,10 @@
+---
+- name: Install neo packages
+  apt:
+    deb: "{{ item }}"
+  with_items:
+  - https://github.com/intel/compute-runtime/releases/download/{{ neo_ver }}/intel-gmmlib_{{ gmmlib_ver }}_amd64.deb
+  - https://github.com/intel/intel-graphics-compiler/releases/download/igc-{{ igc_ver }}/intel-igc-core_{{ igc_ver }}_amd64.deb
+  - https://github.com/intel/intel-graphics-compiler/releases/download/igc-{{ igc_ver }}/intel-igc-opencl_{{ igc_ver }}_amd64.deb
+  - https://github.com/intel/compute-runtime/releases/download/{{ neo_ver }}/intel-opencl-icd_{{ opencl_icd_ver }}_amd64.deb
+  - https://github.com/intel/compute-runtime/releases/download/{{ neo_ver }}/intel-level-zero-gpu_{{ level_zero_ver }}_amd64.deb

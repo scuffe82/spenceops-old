@@ -1,0 +1,5 @@
+- name: create flux namespace
+  shell: kubectl --kubeconfig=./config/{{ cluster_name }}/kubeconfig apply -f ./provisioners/flux/clusters/flux-system/namespace.yaml
+
+- name: create flux secret
+  shell: kubectl --kubeconfig=./config/{{ cluster_name }}/kubeconfig apply -f ./provisioners/flux/clusters/flux-system/flux-secret.yaml
