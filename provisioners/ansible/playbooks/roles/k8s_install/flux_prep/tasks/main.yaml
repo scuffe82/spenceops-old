@@ -1,5 +1,15 @@
+- name: untaint master
+  shell: kubectl --kubeconfig=../../../config/{{ cluster_name }}/kubeconfig taint nodes --all node-role.kubernetes.io/control-plane- node-role.kubernetes.io/master-
+  when: untaint_master|bool == True
+
 - name: create flux namespace
-  shell: kubectl --kubeconfig=./config/{{ cluster_name }}/kubeconfig apply -f ./provisioners/flux/clusters/flux-system/namespace.yaml
+  shell: kubectl --kubeconfig=../../../config/{{ cluster_name }}/kubeconfig apply -f ../../flux/clusters/flux-system/namespace.yaml
 
 - name: create flux secret
-  shell: kubectl --kubeconfig=./config/{{ cluster_name }}/kubeconfig apply -f ./provisioners/flux/clusters/flux-system/flux-secret.yaml
+  shell: kubectl --kubeconfig=../../../config/{{ cluster_name }}/kubeconfig apply -f ../../flux/clusters/flux-system/flux-secret.yaml
+
+- name: create gotk components
+  shell: kubectl --kubeconfig=../../../config/{{ cluster_name }}/kubeconfig apply -f ../../flux/clusters/flux-system/gotk-components.yaml
+
+- name: create flux kustomizations
+  shell: kubectl --kubeconfig=../../../config/{{ cluster_name }}/kubeconfig apply -f ../../flux/clusters/flux-system/gotk-sync.yaml
