@@ -2,7 +2,3 @@ installation:
   calicoNetwork:
   mtu: 8950
   linuxDataplane: BPF
-
-
-
-a
