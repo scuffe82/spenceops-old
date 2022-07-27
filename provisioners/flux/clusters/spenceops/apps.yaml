@@ -10,7 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./flux/apps/spenceops
+  path: ./provisioners/flux/apps/spenceops
   prune: true
   wait: true
   timeout: 5m0s
