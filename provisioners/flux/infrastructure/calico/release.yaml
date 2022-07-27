@@ -14,6 +14,6 @@ spec:
         namespace: flux-system
   valuesFrom:
     - kind: ConfigMap
-      name: nginx-infra-values
+      name: calico-values
   interval: 5m0s
   releaseName: calico-tigera-operator
