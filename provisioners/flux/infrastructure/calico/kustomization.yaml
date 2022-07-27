@@ -14,12 +14,15 @@ configurations:
 spec:
   patches:
     - patch: |-
-        apiVersion: apps/v1
-        kind: DaemonSet
-        spec:
-          spec:
-            nodeSelector:
-              non-calico: "true"      
+       '{"spec":
+          {"template":
+            {"spec":
+              {"nodeSelector":
+                {"non-calico": "true"}
+              }
+            }
+          }
+        }'     
       target:
         kind: DaemonSet
         labelSelector: "k8s-app=kube-proxy"
