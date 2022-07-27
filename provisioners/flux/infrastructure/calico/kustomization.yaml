@@ -11,20 +11,19 @@ configMapGenerator:
       - values.yaml=values.yaml
 configurations:
   - kustomizeconfig.yaml
-spec:
-  patches:
-    - patch: |-
-       '{
-          "spec": {
-            "template": {
-              "spec": {
-                "nodeSelector": {
-                  "non-calico": "true"
-                }
+patches:
+  - patch: |-
+     '{
+        "spec": {
+          "template": {
+            "spec": {
+              "nodeSelector": {
+                "non-calico": "true"
               }
             }
           }
-        }'     
-      target:
-        kind: DaemonSet
-        labelSelector: "k8s-app=kube-proxy"
+        }
+      }'     
+    target:
+      kind: DaemonSet
+      labelSelector: "k8s-app=kube-proxy"
