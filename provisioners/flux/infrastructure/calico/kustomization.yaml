@@ -13,17 +13,9 @@ configurations:
   - kustomizeconfig.yaml
 patches:
   - patch: |-
-     '{
-        "spec": {
-          "template": {
-            "spec": {
-              "nodeSelector": {
-                "non-calico": "true"
-              }
-            }
-          }
-        }
-      }'     
+      - op: add
+        path: /spec/template/spec/nodeSelector/nodeSelector/non-calico
+        value: true   
     target:
       kind: DaemonSet
       labelSelector: "k8s-app=kube-proxy"
