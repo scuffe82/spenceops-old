@@ -15,6 +15,7 @@ patches:
   - patch: |-
       apiVersion: apps/v1
       kind: DaemonSet
+      metadata:
       spec:
         template:
           spec:
