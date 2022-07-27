@@ -28,7 +28,7 @@ tasks:
     cmds:
       - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/setup_ansible_user.yaml --ask-pass --ask-become-pass -u {{ .REMOTE_USER }}"
 
-  ubuntu-prepare:
+  ubuntu-prep:
     desc: Prepare all the k8s nodes for running k3s
     dir: provisioners/ansible
     cmds:
