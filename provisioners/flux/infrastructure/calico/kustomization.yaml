@@ -14,7 +14,7 @@ configurations:
 patches:
   - patch: |-
       - op: add
-        path: /spec/template/spec/nodeSelector/nodeSelector/non-calico
+        path: /spec/template/spec/nodeSelector/non-calico
         value: true   
     target:
       kind: DaemonSet
