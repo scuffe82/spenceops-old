@@ -28,14 +28,14 @@ tasks:
     cmds:
       - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/setup_ansible_user.yaml --ask-pass --ask-become-pass -u {{ .REMOTE_USER }}"
 
-  ubuntu-prep:
-    desc: Prepare all the k8s nodes for running k3s
+  prep-ubuntu:
+    desc: Prep ubuntu servers for k8s
     dir: provisioners/ansible
     cmds:
       - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/ubuntu-prepare.yaml"
 
-  ubuntu-upgrade:
-    desc: Upgrade all the k8s nodes operating system
+  upgrade-ububtu:
+    desc: Upgrade ubuntu servers
     dir: provisioners/ansible
     cmds:
       - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/ubuntu-upgrade.yaml"
@@ -45,6 +45,12 @@ tasks:
     dir: provisioners/ansible
     cmds:
       - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/k8s_install.yaml"
+
+  disable-kube-proxy:
+    desc: Disable Kube-Proxy
+    dir: provisioners/ansible
+    cmds:
+      - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/disable_kube_proxy.yaml"
 
   ping:
     desc: Ping all the hosts
