@@ -13,9 +13,14 @@ configurations:
   - kustomizeconfig.yaml
 patches:
   - patch: |-
-      - op: add
-        path: /spec/template/spec/nodeSelector/non-calico
-        value: true   
+      apiVersion: apps/v1
+      kind: DaemonSet
+      metadata:
+      spec:
+        template:
+          spec:
+            nodeSelector:
+              "non-calico": "true" 
     target:
       kind: DaemonSet
       name: kube-proxy
