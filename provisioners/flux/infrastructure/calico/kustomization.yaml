@@ -11,16 +11,3 @@ configMapGenerator:
       - values.yaml=values.yaml
 configurations:
   - kustomizeconfig.yaml
-patches:
-  - patch: |-
-      apiVersion: apps/v1
-      kind: DaemonSet
-      metadata:
-      spec:
-        template:
-          spec:
-            nodeSelector:
-              "non-calico": "true"
-    target:
-      kind: DaemonSet
-      name: kube-proxy
