@@ -1,3 +1,0 @@
-- name: disable kube proxy
-  shell: kubectl --kubeconfig=../../../config/{{ cluster_name }}/kubeconfig patch ds -n kube-system kube-proxy -p '{"spec":{"template":{"spec":{"nodeSelector":{"non-calico": "true"}}}}}'
-
