@@ -15,12 +15,11 @@ patches:
   - patch: |-
       apiVersion: apps/v1
       kind: DaemonSet
-      metadata:
       spec:
         template:
           spec:
             nodeSelector:
-              "non-calico": "true" 
+              "non-calico": "true"
     target:
       kind: DaemonSet
       name: kube-proxy
