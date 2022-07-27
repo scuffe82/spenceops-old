@@ -14,11 +14,13 @@ configurations:
 spec:
   patches:
     - patch: |-
-       '{"spec":
-          {"template":
-            {"spec":
-              {"nodeSelector":
-                {"non-calico": "true"}
+       '{
+          "spec": {
+            "template": {
+              "spec": {
+                "nodeSelector": {
+                  "non-calico": "true"
+                }
               }
             }
           }
