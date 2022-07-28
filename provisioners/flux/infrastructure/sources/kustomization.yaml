@@ -6,3 +6,4 @@ resources:
   - spenceops.yaml
   - k8s-at-home.yaml
   - calico.yaml
+  - prometheus-community.yaml

@@ -1,0 +1,35 @@
+alertmanager:
+  ingress:
+    enabled: true
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: web
+    hosts:
+      - alertmanager-test.spenceops.com
+
+grafana:
+  defaultDashboardsTimezone: America/Denver
+  adminPassword: grafana
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: web
+    hosts:
+      - grafana-test.spenceops.com
+    
+prometheus:
+  ingress:
+    enabled: true
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: web
+    hosts:
+      - prometheus-test.spenceops.com
+  storageSpec:
+    volumeClaimTemplate:
+      spec:
+        storageClassName: synology-persistent
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 50Gi
+    

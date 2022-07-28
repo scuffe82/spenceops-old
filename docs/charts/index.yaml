@@ -3,12 +3,32 @@ entries:
   nginx:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2022-07-02T14:45:42.203149-06:00"
+    created: "2022-07-27T19:30:44.964101-06:00"
     description: A Helm chart for Kubernetes
     digest: e415acd2ba0cc96e6a532bd93c54a9299fee1107b66c5c1b915f5d039bea6ac4
     name: nginx
     type: application
     urls:
-    - https://scuffe82.github.io/spenceops/charts/releases/nginx/nginx-0.1.0.tgz
+    - nginx/nginx-0.1.0.tgz
     version: 0.1.0
-generated: "2022-07-02T14:45:42.202715-06:00"
+  synology-csi:
+  - apiVersion: v2
+    appVersion: v1.1.0
+    created: "2022-07-27T19:30:44.964581-06:00"
+    description: Installs the Synology CSI Driver.
+    digest: 3535d8bb52dbf15281f55baac361f76ed228b9b2d6fe9ad25ab47977a0880c54
+    home: https://github.com/christian-schlichtherle/synology-csi-chart
+    keywords:
+    - Synology
+    - CSI Driver
+    maintainers:
+    - name: Christian Schlichtherle
+      url: https://github.com/christian-schlichtherle
+    name: synology-csi
+    sources:
+    - https://github.com/christian-schlichtherle/synology-csi-chart/tree/main
+    - https://github.com/SynologyOpenSource/synology-csi/tree/main
+    urls:
+    - synology-csi-driver/synology-csi-0.3.1-SNAPSHOT.tgz
+    version: 0.3.1-SNAPSHOT
+generated: "2022-07-27T19:30:44.963732-06:00"

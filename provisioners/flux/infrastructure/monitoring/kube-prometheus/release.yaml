@@ -1,19 +1,19 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: nginx-infra
-  namespace: default
+  name: kube-prometheus-stack
+  namespace: monitoring
 spec:
   chart:
     spec:
-      chart: nginx
+      chart: kube-prometheus-stack
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: spenceops
+        name: prometheus-community
         namespace: flux-system
   valuesFrom:
     - kind: ConfigMap
-      name: nginx-infra-values
+      name: kube-prometheus-values
   interval: 5m0s
-  releaseName: nginx-infra
+  releaseName: kube-prometheus-stack
