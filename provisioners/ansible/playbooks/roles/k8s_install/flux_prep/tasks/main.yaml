@@ -13,3 +13,7 @@
 
 - name: create flux kustomizations
   shell: kubectl --kubeconfig=../../../config/{{ cluster_name }}/kubeconfig apply -f ../../flux/clusters/flux-system/gotk-sync.yaml
+
+- name: create sops secret
+  shell: kubectl --kubeconfig=../../../config/{{ cluster_name }}/kubeconfig apply -f ../../../config/sops/sops-secret.yaml
+

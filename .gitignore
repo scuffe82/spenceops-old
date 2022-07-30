@@ -4,3 +4,4 @@ facts_cache
 kubeconfig
 config/sops/keys.txt
 config/sops/sops-secret.yaml
+config/sops/.sops.yaml
