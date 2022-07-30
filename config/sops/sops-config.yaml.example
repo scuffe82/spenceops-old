@@ -1,5 +1,5 @@
 creation_rules:
 - encrypted_regex: '^(data|stringData)$'
-  path_regex: .*.yaml
+  path_regex: .+.yaml$
   age: >-
-    YOURPUBLICAGEKEY
+    <YOUR PUBLIC AGE KEY>
