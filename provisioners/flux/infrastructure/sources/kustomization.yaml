@@ -7,4 +7,4 @@ resources:
   - k8s-at-home.yaml
   - calico.yaml
   - prometheus-community.yaml
-  - nfs-sub-dir-provder.yaml
+  - nfs-sub-dir-provider.yaml
