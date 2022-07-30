@@ -10,7 +10,10 @@ spec:
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: spenceops
+        name: bitnami
         namespace: flux-system
+  valuesFrom:
+    - kind: ConfigMap
+      name: nginx-app-values
   interval: 5m0s
   releaseName: nginx-app

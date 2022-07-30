@@ -58,6 +58,12 @@ Setup the sops config by:
 cat ./config/sops/keys.txt | base64
 ```
 * Take the output vaule and replace <YOUR keys.txt BASE64 VAULE> in the ./config/sops/sops-secret.yaml file
+
+At this point if you need to encrypt a secret run
+```
+sops -e -i ./path/to/your/file
+```
+This will encrypt it in place. If you have added a kustomization file to your cluster directory you will need to make sure the decryptor is set to use the secret with your SOPS keys.
   
 ## Setup Flux SSH keys
 * Copy ./provisioners/flux/clusters/flux-system/flux-secret.yaml.example to ./provisioners/flux/clusters/flux-system/flux-secret.yaml
@@ -104,3 +110,4 @@ At this point the cluster is bootstraping with all of the included apps. Once it
 * The charts and docs directories are not needed for the project and in the repo for a helm repo and for github pages.
 * This is a work in progress/living project that i mess with in my spare time.
 * The .in and .out file are for autoenv in zsh, if you're running OSX you will need to export the .in file to make sure the parameter is set for ansible.
+* All deployments will need to be edited to your environment for DNS, Storage, etc

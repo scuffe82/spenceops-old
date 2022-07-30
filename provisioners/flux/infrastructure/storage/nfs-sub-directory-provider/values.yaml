@@ -1,0 +1,17 @@
+nfs:
+  server: 10.0.0.11
+  path: /volume1/spenceops/nfsProvisioner/
+  mountOptions:
+  volumeName: nfs-subdir-external-provisioner-root
+  reclaimPolicy: Retain
+
+storageClass:
+  create: true
+  defaultClass: false
+  name: nfs-persist
+  allowVolumeExpansion: true
+  reclaimPolicy: Reatin
+  archiveOnDelete: true
+  pathPattern: "${.PVC.namespace}/${.PVC.name}"
+  accessModes: ReadWriteOnce
+  

@@ -12,3 +12,8 @@ spec:
     name: flux-system
   path: ./provisioners/flux/infrastructure/networking
   prune: true
+  validation: client
+  decryption:            
+    provider: sops       
+    secretRef:           
+      name: sops-age 
