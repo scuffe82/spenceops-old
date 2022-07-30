@@ -10,7 +10,7 @@ storageClass:
   defaultClass: false
   name: nfs-persist
   allowVolumeExpansion: true
-  reclaimPolicy: Reatin
+  reclaimPolicy: Retain
   archiveOnDelete: true
   pathPattern: "${.PVC.namespace}/${.PVC.name}"
   accessModes: ReadWriteOnce
