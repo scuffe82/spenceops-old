@@ -1,4 +1,4 @@
-".sops.yaml"
+.sops.yaml
 ansible-user*
 ansible.log
 facts_cache
