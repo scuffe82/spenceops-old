@@ -14,15 +14,6 @@ Other tools below have some install examples, see the tools homepage for additio
 * Use SOPS to encrypt secrets that need to be pushed into the repo
 * TODO: Pre-commit hooks to check for secrets/keys
 
-## Ansible user setup
-Generate ssh-key for the ansible user in ./provisioners/ansible/ansible_user_setup/files named ansible-user and ansible-user.pub then run
-
-```
-ansible-playbook ./provisioners/ansible/ansible_user_setup/setup_ansible_user.yaml --ask-pass --ask-become-pass
-``` 
-
-This will create the ansible user on the inventory servers with the ssh key you created above. The user is allowed to sudo without auth so it can setup the system automatically. 
-
 ## SOPS/AGE Setup
 
 Install Sops and Age for your OS:
@@ -85,3 +76,31 @@ Update the Ansible inventory to your server list. The current setup is for 1+ no
 * Add all other servers to the workers section
 * In the ./providers/ansible/inventory/host_vars directory create a file for each of your servers containing servername: YOURNAME
 * In the ./provisioners/ansible/inventory/group_vars/all file edit the parameters for your environment.
+
+## Ansible user setup
+Generate ssh-key for the ansible user in ./provisioners/ansible/ansible_user_setup/files named ansible-user and ansible-user.pub then run
+
+```
+ansible-playbook ./provisioners/ansible/ansible_user_setup/setup_ansible_user.yaml --ask-pass --ask-become-pass
+``` 
+
+This will create the ansible user on the inventory servers with the ssh key you created above. The user is allowed to sudo without auth so it can setup the system automatically. 
+
+
+## Now to use all this stuff
+Before you deploy the cluster you need to push everything to your git repo. Once uploaded update the ./provisioners/flux/clusters/flux-system/gotk-sync.yaml file with the URL of your git repo.
+* NOTE: Flux does not like git URL's that have a ":" in the URL so if your using a provider that puts one in there (like bitbucket) try replacing it with a "/" and see if you can still clone your repo.
+
+Run the following commands to setup the cluster
+* ``` task ansible:list ``` to check that your ansible inventory is configured for your hosts
+* ``` task ansible:ping ``` to make sure ansible can talk to all your servers
+* ``` task ansible:prep-ubuntu ``` to install all the packages and make OS tweaks for k8s
+* ``` task ansible:k8s-install ``` to install k8s and setup flux
+* ``` task ansible: disable-kube-proxy ``` This disables the kube-proxy daemon set from running since Calico is deployed in eBFP mode
+
+At this point the cluster is bootstraping with all of the included apps. Once its up there will be a kubeconfig file located in ./config/CLUSTER-NAME/kubeconfig to access the cluster with.
+
+## Notes
+* The charts and docs directories are not needed for the project and in the repo for a helm repo and for github pages.
+* This is a work in progress/living project that i mess with in my spare time.
+* The .in and .out file are for autoenv in zsh, if you're running OSX you will need to export the .in file to make sure the parameter is set for ansible.
