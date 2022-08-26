@@ -8,3 +8,5 @@ resources:
   - calico.yaml
   - prometheus-community.yaml
   - nfs-sub-dir-provider.yaml
+  - traefik.yaml
+  - jetstack.yaml

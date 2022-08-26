@@ -1,0 +1,97 @@
+ingressClass:
+  enabled: false
+  isDefaultClass: false
+  fallbackApiVersion: ""
+
+ingressRoute:
+  dashboard:
+    enabled: true
+
+rollingUpdate:
+  maxUnavailable: 1
+  maxSurge: 1
+
+providers:
+  kubernetesCRD:
+    enabled: true
+    allowCrossNamespace: false
+    allowExternalNameServices: false
+    allowEmptyServices: false
+    ingressClass: traefik
+    
+  kubernetesIngress:
+    enabled: true
+    allowExternalNameServices: false
+    allowEmptyServices: false
+    publishedService:
+      enabled: true
+    
+logs:
+  general:
+    level: ERROR
+
+metrics:
+  prometheus:
+    entryPoint: metrics
+  
+globalArguments:
+  - "--global.checknewversion"
+  - "--global.sendanonymoususage"
+
+additionalArguments:
+  - "--entryPoints.websecure.forwardedHeaders.insecure"
+  - "--serverstransport.insecureskipverify=true"
+  - "--ping=true"
+  - "--api.insecure=true"
+
+
+ports:
+  traefik:
+    port: 9000
+    expose: true
+    exposedPort: 9000
+    protocol: TCP
+  web:
+    port: 8000
+    expose: true
+    exposedPort: 80
+    protocol: TCP
+  websecure:
+    port: 8443
+    expose: true
+    exposedPort: 443
+    protocol: TCP
+  metrics:
+    port: 9100
+    expose: false
+    exposedPort: 9100
+    protocol: TCP
+
+service:
+  enabled: true
+  type: LoadBalancer
+  spec:
+    loadBalancerIP: "10.0.0.220"
+  
+autoscaling:
+  enabled: true
+   minReplicas: 1
+   maxReplicas: 3
+   metrics:
+   - type: Resource
+     resource:
+       name: cpu
+       targetAverageUtilization: 60
+   - type: Resource
+     resource:
+       name: memory
+       targetAverageUtilization: 60
+
+persistence:
+  enabled: true
+  name: data
+#  existingClaim: ""
+  accessMode: ReadWriteOnce
+  size: 128Mi
+  storageClass: "synology-csi-driver-delete"
+  path: /data
