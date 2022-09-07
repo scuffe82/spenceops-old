@@ -13,7 +13,7 @@ timezone: America/Denver
 ntp1: 10.0.0.1
 ntp2: time.cloudflare.com
 
-crio_version: 1.24
+crio_version: 1.25
 crio_os: xUbuntu_22.04
 
 domain_name: spenceops.com

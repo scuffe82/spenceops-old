@@ -84,10 +84,10 @@ Update the Ansible inventory to your server list. The current setup is for 1+ no
 * In the ./provisioners/ansible/inventory/group_vars/all file edit the parameters for your environment.
 
 ## Ansible user setup
-Generate ssh-key for the ansible user in ./provisioners/ansible/ansible_user_setup/files named ansible-user and ansible-user.pub then run
+Generate ssh-key for the ansible user in ./provisioners/ansible/playbooks/roles/ansible_user_setup/files named ansible-user and ansible-user.pub then run
 
 ```
-ansible-playbook ./provisioners/ansible/ansible_user_setup/setup_ansible_user.yaml --ask-pass --ask-become-pass
+task ansible:setup-user
 ``` 
 
 This will create the ansible user on the inventory servers with the ssh key you created above. The user is allowed to sudo without auth so it can setup the system automatically. 

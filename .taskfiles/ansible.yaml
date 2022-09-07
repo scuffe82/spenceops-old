@@ -22,13 +22,13 @@ tasks:
     cmds:
       - "ansible all --list-hosts"
 
-  prep-user:
+  setup-user:
     desc: add ansible user with ssh key
     dir: provisioners/ansible
     cmds:
       - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/setup_ansible_user.yaml --ask-pass --ask-become-pass -u {{ .REMOTE_USER }}"
 
-  prep-ubuntu:
+  setup-ubuntu:
     desc: Prep ubuntu servers for k8s
     dir: provisioners/ansible
     cmds:
@@ -40,7 +40,7 @@ tasks:
     cmds:
       - "ansible-playbook {{.ANSIBLE_PLAYBOOK_DIR}}/ubuntu-upgrade.yaml"
 
-  k8s-install:
+  install-k8s:
     desc: Install Kubernetes on the nodes
     dir: provisioners/ansible
     cmds:

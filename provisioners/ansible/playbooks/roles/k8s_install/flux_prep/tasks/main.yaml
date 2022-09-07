@@ -1,5 +1,5 @@
 - name: untaint master
-  shell: kubectl --kubeconfig=../../../config/{{ cluster_name }}/kubeconfig taint nodes --all node-role.kubernetes.io/control-plane- node-role.kubernetes.io/master-
+  shell: kubectl --kubeconfig=../../../config/{{ cluster_name }}/kubeconfig taint nodes --all node-role.kubernetes.io/control-plane:NoSchedule-
   when: untaint_master|bool == True
 
 - name: create flux namespace
