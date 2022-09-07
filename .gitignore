@@ -5,3 +5,4 @@ facts_cache
 kubeconfig
 config/sops/keys.txt
 config/sops/sops-secret.yaml
+provisioners/flux/infrastructure/storage/synology-csi-driver/client-info.yaml
