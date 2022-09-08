@@ -4,7 +4,7 @@ data:
 kind: Secret
 metadata:
     creationTimestamp: null
-    name: client-info-secret
+    name: synology-csi-driver-client-info
     namespace: storage
 sops:
     kms: []
