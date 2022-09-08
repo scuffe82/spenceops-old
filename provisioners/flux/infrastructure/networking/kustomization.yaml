@@ -4,5 +4,5 @@ resources:
   - metallb
   - traefik
   - cert-manager
-  - traefik-forward-auth
+  # - traefik-forward-auth
   
