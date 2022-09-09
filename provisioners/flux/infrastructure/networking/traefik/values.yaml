@@ -15,13 +15,13 @@ providers:
   kubernetesCRD:
     enabled: true
     allowCrossNamespace: false
-    allowExternalNameServices: false
+    allowExternalNameServices: true
     allowEmptyServices: false
     ingressClass: traefik
     
   kubernetesIngress:
     enabled: true
-    allowExternalNameServices: false
+    allowExternalNameServices: true
     allowEmptyServices: false
     publishedService:
       enabled: true

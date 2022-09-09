@@ -10,3 +10,4 @@ resources:
   - nfs-sub-dir-provider.yaml
   - traefik.yaml
   - jetstack.yaml
+  - authentik.yaml
