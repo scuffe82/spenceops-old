@@ -5,4 +5,5 @@ resources:
   - traefik
   - cert-manager
   # - traefik-forward-auth
+  - authentik
   
