@@ -73,20 +73,6 @@ service:
   spec:
     loadBalancerIP: "10.0.0.220"
   
-autoscaling:
-  enabled: false
-   minReplicas: 1
-   maxReplicas: 3
-   metrics:
-   - type: Resource
-     resource:
-       name: cpu
-       targetAverageUtilization: 60
-   - type: Resource
-     resource:
-       name: memory
-       targetAverageUtilization: 60
-
 persistence:
   enabled: true
   name: data
