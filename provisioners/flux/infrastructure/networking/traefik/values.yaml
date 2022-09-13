@@ -9,7 +9,7 @@ experimental:
   plugins:
     enabled: true
   kubernetesGateway:
-    enabled: true
+    enabled: false
     
 ingressRoute:
   dashboard:
