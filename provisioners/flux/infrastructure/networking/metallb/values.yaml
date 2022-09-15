@@ -1,24 +1,8 @@
-configInline:
-  address-pools:
-      - name: manual
-        protocol: layer2
-        addresses:
-        - 10.0.0.220-10.0.0.229
-      - name: automatic
-        protocol: layer2
-        addresses:
-        - 10.0.0.230-10.0.0.239
-prometheusRule:
+prometheus:
+  scrapeAnnotations: true
+  serviceMonitor:
+    enabled: true
+  prometheusRule:
+    enabled: true
+crds:
   enabled: true
-
-controller:
-  metrics:
-    enabled: true
-    serviceMonitor:
-      enabled: true
-    
-speaker:
-  metrics:
-    enabled: true
-    serviceMonitor:
-      enabled: true

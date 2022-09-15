@@ -11,3 +11,4 @@ resources:
   - traefik.yaml
   - jetstack.yaml
   - authentik.yaml
+  - metallb.yaml

@@ -10,7 +10,7 @@ spec:
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: bitnami
+        name: metallb
         namespace: flux-system
   valuesFrom:
     - kind: ConfigMap
