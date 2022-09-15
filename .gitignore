@@ -6,3 +6,4 @@ kubeconfig
 config/sops/keys.txt
 config/sops/sops-secret.yaml
 provisioners/flux/infrastructure/storage/synology-csi-driver/client-info-unencrypted.yaml
+provisioners/flux/infrastructure/networking/cert-manager/cert-config.yaml
