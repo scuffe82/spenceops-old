@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - metallb
   - traefik
-  - cert-manager
+  # - cert-manager
   # - traefik-forward-auth
   - authentik
   
