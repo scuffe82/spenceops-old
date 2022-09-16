@@ -1,7 +1,5 @@
 prometheus:
   scrapeAnnotations: true
-  serviceMonitor:
-    enabled: true
   prometheusRule:
     enabled: true
 crds:
