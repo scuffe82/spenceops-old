@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - https://github.com/cert-manager/cert-manager/releases/download/v1.9.1/cert-manager.crds.yaml
-  - https://raw.githubusercontent.com/metallb/metallb/main/config/crd/bases/metallb.io_ipaddresspools.yaml
+  #- https://raw.githubusercontent.com/metallb/metallb/main/config/crd/bases/metallb.io_ipaddresspools.yaml
   - crd-prometheusrules.yaml
   - crd-servicemonitors.yaml
   - crd-traefikMiddleware.yaml
