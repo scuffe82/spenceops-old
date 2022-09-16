@@ -1,0 +1,50 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+    annotations: null
+    name: letsencrypt-stg
+spec:
+    acme:
+        email: scuffe82@gmail.com
+        preferredChain: ""
+        privateKeySecretRef:
+            name: letsencrypt-stg
+        server: https://acme-staging-v02.api.letsencrypt.org/directory
+        solvers:
+            - dns01:
+                cloudflare:
+                    apiTokenSecretRef:
+                        key: api-token
+                        name: cloudflare-api-token
+                    email: scuffe82@gmail.com
+status:
+    acme:
+        lastRegisteredEmail: scuffe82@gmail.com
+        uri: https://acme-staging-v02.api.letsencrypt.org/acme/acct/50523518
+    conditions:
+        - lastTransitionTime: "2022-04-12T00:01:13Z"
+          message: The ACME account was registered with the ACME server
+          observedGeneration: 1
+          reason: ACMEAccountRegistered
+          status: "True"
+          type: Ready
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1mc4jmkmljvgsathekvmlwvfth0f5hm2yxx08kyhfpeyvpsa0s40qtjl3dd
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAvNjZoN0xURWhpdzU3TDBT
+            S2NhcC9WTDNNSjY0ZkVDS3JUdXpRL1loRHdFCkZMWEVBdnM1T3pBS0hsczJYdTQw
+            anR0eVc3N3R3TEY1TjF0cnFpK1FxdzgKLS0tIHBNei9ZM3llVThJMGYzbGp0MjZG
+            V2Q0MFdUMFIrVSsvLzVXaXdZVmxDYnMKon+cTDkGkyWPfg8Yqtb/se0sM8WXqBHL
+            0FJBjlPDXJbkh+OuDOb97P/xgOkjE1Gv9ijHnSIA2+vUoTdWdPIPOw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2022-09-15T20:36:45Z"
+    mac: ENC[AES256_GCM,data:RPFdY4nO2J8g4+sq/JqLd4m55mPRdUbuYEUEc7zoW/tJ0ZDQHT9GPD1hWBq4NBasSnwhOXrOqPT0lX27SYTeUSraELmf2S/AWZhbiBzz8qXCMY+wD46NGlzPXQ1FciGSMV/0j0fQUHPyyvyQirRtYYG1OpRtPHErzoI4jbJpjkI=,iv:Bi2WPV9vSZz958H0nSBBCzt7FVSvron0mATRujvQMJ0=,tag:s25P4TcDHIkIMSII9lxKuA==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.1

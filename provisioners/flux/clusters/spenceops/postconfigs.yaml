@@ -1,16 +1,16 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: monitoring-infrastructure
+  name: postconfigs
   namespace: flux-system
 spec:
   interval: 10m0s
   dependsOn:
-    - name: postconfigs
+    - name: networking-infrastructure
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./provisioners/flux/infrastructure/monitoring
+  path: ./provisioners/flux/infrastructure/postconfigs
   prune: true
   validation: client
   decryption:            
