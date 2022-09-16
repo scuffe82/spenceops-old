@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: networking
 resources:
   - release.yaml
-  - cert-config.yaml
+  - cloudflaretoken.yaml
 configMapGenerator:
   - name: cert-manager-values
     files:
