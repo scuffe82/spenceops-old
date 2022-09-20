@@ -1,12 +1,12 @@
 all:
   hosts:
-    server1:
+    dolos:
 #    server2:
 #    server3:
 
 masters:
   hosts:
-    server1:
+    dolos:
 
 #workers:
 #  hosts:
