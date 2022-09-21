@@ -5,3 +5,9 @@ resources:
   - namespace.yaml
   - client-info.yaml
   - release.yaml
+configMapGenerator:
+  - name: synology-csi-values
+    files:
+      - values.yaml=values.yaml
+configurations:
+  - kustomizeconfig.yaml
