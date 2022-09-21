@@ -4,3 +4,4 @@ namespace: networking
 resources:
   - clusterissuer.yaml
   - ipaddresspool.yaml
+  - middleware.yaml

@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - bitnami.yaml
-  - spenceops.yaml
   - k8s-at-home.yaml
   - calico.yaml
   - prometheus-community.yaml
@@ -12,3 +11,4 @@ resources:
   - jetstack.yaml
   - authentik.yaml
   - metallb.yaml
+  - spenceops.yaml

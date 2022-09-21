@@ -4,4 +4,4 @@ namespace: storage
 resources:
   - namespace.yaml
   - client-info.yaml
-  - synology-csi-driver.yaml
+  - release.yaml

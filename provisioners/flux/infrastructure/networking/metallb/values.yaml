@@ -1,6 +1,2 @@
-prometheus:
-  scrapeAnnotations: true
-  prometheusRule:
-    enabled: true
 crds:
   enabled: true

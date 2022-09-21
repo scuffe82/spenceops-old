@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: synology-csi
+  namespace: storage
+spec:
+  chart:
+    spec:
+      chart: synology-csi
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: spenceops
+        namespace: flux-system
+  valuesFrom:
+    - kind: ConfigMap
+      name: synology-csi-values
+  interval: 5m0s
+  releaseName: synology-csi

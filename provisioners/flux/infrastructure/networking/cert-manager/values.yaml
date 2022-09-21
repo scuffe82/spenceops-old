@@ -1,2 +1,2 @@
 # No vaules are needed to install cert-manager, adding a default vaule just to keep the process the same
-installCRDs: false
+installCRDs: true

@@ -43,7 +43,7 @@ authentik:
   log_level: info
   # -- Secret key used for cookie singing and unique user IDs,
   # don't change this after the first install
-  secret_key: "ed173a2f9b7f5a92b85ee5f8s1gf62321sasfdrsygcxv84561"
+  secret_key: "c6f57c3d5643b4b0e2c8c12164a79bbb235c2b60bef437d6df"
   # -- Path for the geoip database. If the file doesn't exist, GeoIP features are disabled.
   geoip: /geoip/GeoLite2-City.mmdb
   # -- Mode for the avatars. Defaults to gravatar. Possible options 'gravatar' and 'none'

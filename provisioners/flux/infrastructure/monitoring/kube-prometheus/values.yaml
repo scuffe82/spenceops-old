@@ -4,7 +4,7 @@ alertmanager:
     annotations:
       traefik.ingress.kubernetes.io/router.entrypoints: web
     hosts:
-      - alertmanager-test.spenceops.com
+      - alertmanager.spenceops.com
 
 grafana:
   defaultDashboardsTimezone: America/Denver
@@ -15,7 +15,7 @@ grafana:
     annotations:
       traefik.ingress.kubernetes.io/router.entrypoints: web
     hosts:
-      - grafana-test.spenceops.com
+      - grafana.spenceops.com
     
 prometheus:
   ingress:
@@ -23,7 +23,7 @@ prometheus:
     annotations:
       traefik.ingress.kubernetes.io/router.entrypoints: web
     hosts:
-      - prometheus-test.spenceops.com
+      - prometheus.spenceops.com
   storageSpec:
     volumeClaimTemplate:
       spec:
