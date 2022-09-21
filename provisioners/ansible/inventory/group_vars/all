@@ -41,7 +41,7 @@ zsh_ohmy_plugins:
   - zsh-autosuggestions
   - autoenv
 
-k8s_api_ip: 10.0.0.210
+k8s_api_ip: 10.0.0.30
 pod_network_cidr: 192.168.0.0/16
 cluster_name: spenceops
 untaint_master: True

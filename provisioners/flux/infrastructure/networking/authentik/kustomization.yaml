@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: networking
 resources:
   - release.yaml
-  - middleware.yaml
 configMapGenerator:
   - name: authentik-values
     files:
