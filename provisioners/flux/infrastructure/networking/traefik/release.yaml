@@ -16,4 +16,4 @@ spec:
     - kind: ConfigMap
       name: traefik-values
   interval: 5m0s
-  releaseName: traefik-test
+  releaseName: traefik
