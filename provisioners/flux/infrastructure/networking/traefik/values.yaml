@@ -30,7 +30,6 @@ providers:
       enabled: true
       
 additionalArguments:
-- "--providers.file.filename=/config/dynamic.toml"
 - "--ping"
 - "--ping.entrypoint=web"
 - "--entryPoints.websecure.forwardedHeaders.insecure"
