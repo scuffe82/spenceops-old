@@ -87,7 +87,7 @@ service:
   annotations: {}
   labels: {}
   spec:
-    loadBalancerIP: "10.0.1.10"
+    loadBalancerIP: "10.0.0.180"
 
 persistence:
   enabled: false
