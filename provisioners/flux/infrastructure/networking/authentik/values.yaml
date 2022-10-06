@@ -27,7 +27,7 @@ additionalContainers: {}
 
 ingress:
   enabled: true
-  ingressClassName: ""
+  ingressClassName: "traefik"
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
   labels: {}

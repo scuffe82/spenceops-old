@@ -36,4 +36,4 @@ spec:
   selector:
     app: nginx
   type: LoadBalancer
-  loadBalancerIP: 10.0.0.225
+  loadBalancerIP: 10.0.0.185
